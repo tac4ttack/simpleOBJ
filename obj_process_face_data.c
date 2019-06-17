@@ -1,120 +1,120 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mesh_process_face_data.c                           :+:      :+:    :+:   */
+/*   obj_process_face_data.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 16:53:33 by fmessina          #+#    #+#             */
-/*   Updated: 2019/03/09 15:14:18 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:39:47 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scop.h"
+#include "simpleOBJ.h"
 
-static bool	mesh_process_face_data_v(t_mesh *mesh, char *str, int index)
+static bool	obj_process_face_data_v(t_obj *obj, char *str, int index)
 {
 	int		ret;
 
-	if (mesh && str)
+	if (obj && str)
 	{
-		ret = sscanf(str, "%d", &mesh->face[index]);
+		ret = sscanf(str, "%d", &obj->face[index]);
 		if (ret != 1)
-			return (error_bool("[ERROR mesh_process_face_data_v]\t" \
-			"Could not retrieve Vn face element data!\n"));
-		else if (mesh->face[index] == 0)
-			return (error_bool("[ERROR mesh_process_face_data_v]\t" \
-			"Error in face element format, indices can\'t be 0!\n"));
-		mesh->face[index + 1] = -1;
-		mesh->face[index + 2] = -1;
+			return (obj_berror("[ERROR obj_process_face_data_v]\t" \
+			"Could not retrieve Vn face element data!\n", NULL));
+		else if (obj->face[index] == 0)
+			return (obj_berror("[ERROR obj_process_face_data_v]\t" \
+			"Error in face element format, indices can\'t be 0!\n", NULL));
+		obj->face[index + 1] = -1;
+		obj->face[index + 2] = -1;
 		return (true);
 	}
-	return (error_bool("[ERROR mesh_process_face_data_v]\t" \
-	"NULL mesh or string pointer!\n"));
+	return (obj_berror("[ERROR obj_process_face_data_v]\t" \
+	"NULL mesh or string pointer!\n", NULL));
 }
 
-static bool	mesh_process_face_data_v_vt(t_mesh *mesh, char *str, int index)
+static bool	obj_process_face_data_v_vt(t_obj *obj, char *str, int index)
 {
 	int		ret;
 
-	if (mesh && str)
+	if (obj && str)
 	{
-		ret = sscanf(str, "%d/%d", &mesh->face[index], &mesh->face[index + 1]);
+		ret = sscanf(str, "%d/%d", &obj->face[index], &obj->face[index + 1]);
 		if (ret != 2)
-			return (error_bool("[ERROR mesh_process_face_data_v_vt]\t" \
-			"Could not retrieve Vn/VTn face element data!\n"));
-		else if (mesh->face[index] == 0 || mesh->face[index + 1] == 0)
-			return (error_bool("[ERROR mesh_process_face_data_v_vt]\t" \
-			"Error in face element format, indices can\'t be 0!\n"));
-		mesh->face[index + 2] = -1;
+			return (obj_berror("[ERROR obj_process_face_data_v_vt]\t" \
+			"Could not retrieve Vn/VTn face element data!\n", NULL));
+		else if (obj->face[index] == 0 || obj->face[index + 1] == 0)
+			return (obj_berror("[ERROR obj_process_face_data_v_vt]\t" \
+			"Error in face element format, indices can\'t be 0!\n", NULL));
+		obj->face[index + 2] = -1;
 		return (true);
 	}
-	return (error_bool("[ERROR mesh_process_face_data_v_vt]\t" \
-	"NULL mesh or string pointer!\n"));
+	return (obj_berror("[ERROR obj_process_face_data_v_vt]\t" \
+	"NULL mesh or string pointer!\n", NULL));
 }
 
-static bool	mesh_process_face_data_v_vt_vn(t_mesh *mesh, char *str, int index)
+static bool	obj_process_face_data_v_vt_vn(t_obj *obj, char *str, int index)
 {
 	int		ret;
 
-	if (mesh && str)
+	if (obj && str)
 	{
 		ret = sscanf(str, "%d/%d/%d", \
-					&mesh->face[index],
-					&mesh->face[index + 1],
-					&mesh->face[index + 2]);
+					&obj->face[index],
+					&obj->face[index + 1],
+					&obj->face[index + 2]);
 		if (ret != 3)
-			return (error_bool("[ERROR mesh_process_face_data_v_vt_vn]\t" \
-			"Could not retrieve Vn/VTn/VNn face element data!\n"));
-		else if (mesh->face[index] == 0 \
-					|| mesh->face[index + 1] == 0
-					|| mesh->face[index + 2] == 0)
-			return (error_bool("[ERROR mesh_process_face_data_v_vt_vn]\t" \
-			"Error in face element format, indices can\'t be 0!\n"));
+			return (obj_berror("[ERROR obj_process_face_data_v_vt_vn]\t" \
+			"Could not retrieve Vn/VTn/VNn face element data!\n", NULL));
+		else if (obj->face[index] == 0 \
+					|| obj->face[index + 1] == 0
+					|| obj->face[index + 2] == 0)
+			return (obj_berror("[ERROR obj_process_face_data_v_vt_vn]\t" \
+			"Error in face element format, indices can\'t be 0!\n", NULL));
 		return (true);
 	}
-	return (error_bool("[ERROR mesh_process_face_data_v_vt_vn]\t" \
-	"NULL mesh or string pointer!\n"));
+	return (obj_berror("[ERROR obj_process_face_data_v_vt_vn]\t" \
+	"NULL mesh or string pointer!\n", NULL));
 }
 
-static bool	mesh_process_face_data_v_vn(t_mesh *mesh, char *str, int index)
+static bool	obj_process_face_data_v_vn(t_obj *obj, char *str, int index)
 {
 	int		ret;
 
-	if (mesh && str)
+	if (obj && str)
 	{
-		ret = sscanf(str, "%d//%d", &mesh->face[index], &mesh->face[index + 2]);
+		ret = sscanf(str, "%d//%d", &obj->face[index], &obj->face[index + 2]);
 		if (ret != 2)
-			return (error_bool("[ERROR mesh_process_face_data_v_vn]\t" \
-			"Could not retrieve Vn//VNn face element data!\n"));
-		else if (mesh->face[index] == 0 || mesh->face[index + 2] == 0)
-			return (error_bool("[ERROR mesh_process_face_data_v_vn]\t" \
-			"Error in face element format, indices can\'t be 0!\n"));
-		mesh->face[index + 1] = -1;
+			return (obj_berror("[ERROR obj_process_face_data_v_vn]\t" \
+			"Could not retrieve Vn//VNn face element data!\n", NULL));
+		else if (obj->face[index] == 0 || obj->face[index + 2] == 0)
+			return (obj_berror("[ERROR obj_process_face_data_v_vn]\t" \
+			"Error in face element format, indices can\'t be 0!\n", NULL));
+		obj->face[index + 1] = -1;
 		return (true);
 	}
-	return (error_bool("[ERROR mesh_process_face_data_v_vn]\t" \
-	"NULL mesh or string pointer!\n"));
+	return (obj_berror("[ERROR obj_process_face_data_v_vn]\t" \
+	"NULL mesh or string pointer!\n", NULL));
 }
 
-bool		mesh_process_face_data_dispatch(t_mesh *mesh, \
+bool		obj_process_face_data_dispatch(t_obj *obj, \
 											char *str, \
 											int mod, \
 											int index)
 {
-	if (mesh && str && mod >= 0 && mod <= 3)
+	if (obj && str && mod >= 0 && mod <= 3)
 	{
 		if (mod == 0)
-			return (mesh_process_face_data_v(mesh, str, index));
+			return (obj_process_face_data_v(obj, str, index));
 		else if (mod == 1)
-			return (mesh_process_face_data_v_vt(mesh, str, index));
+			return (obj_process_face_data_v_vt(obj, str, index));
 		else if (mod == 2)
-			return (mesh_process_face_data_v_vt_vn(mesh, str, index));
+			return (obj_process_face_data_v_vt_vn(obj, str, index));
 		else if (mod == 3)
-			return (mesh_process_face_data_v_vn(mesh, str, index));
+			return (obj_process_face_data_v_vn(obj, str, index));
 		else
 			return (false);
 	}
-	return (error_bool("[ERROR mesh_process_face_data_dispatch]\t" \
-	"NULL mesh or string pointer, or invalid face mod!\n"));
+	return (obj_berror("[ERROR obj_process_face_data_dispatch]\t" \
+	"NULL mesh or string pointer, or invalid face mod!\n", NULL));
 }

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 17:25:19 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:24:11 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 # include <sys/stat.h>	// required for stat()
 # include <stdlib.h>
 # include <string.h>
+# include <math.h>		// required for sin() etc
+# include <time.h>		// required for time()
+# include <stdarg.h>	// required for va_arg
+# include <assert.h>	// required for assert()
+
+# define CHARSET_V				"v \t.-0123456789"
+# define CHARSET_VT				"vt \t.-0123456789"
+# define CHARSET_VN				"vn \t.-0123456789"
+# define CHARSET_VP				"vp \t.-0123456789"
+# define CHARSET_F				 "f \t/-0123456789"
+# define CHARSET_L 				"l \t-0123456789"
 
 # define SIMPLE_OBJ_ERROR_LOG_FILENAME "simpleOBJ_error.log"
 
@@ -97,6 +108,35 @@ typedef struct					s_obj
 */
 t_obj						*obj_load_file(char *target);
 t_obj						*obj_process_file(char *data);
+
+/*
+**	Line parsing functions
+*/
+bool						obj_line_process(t_obj *obj, char **split);
+bool						obj_line_process_check(char *str, char *charset);
+bool						obj_line_process_f(t_obj *obj, char *str);
+bool						obj_line_process_v(t_obj *obj, char *str);
+bool						obj_line_process_vn(t_obj *obj, char *str);
+bool						obj_line_process_vp(t_obj *obj, char *str);
+bool						obj_line_process_vt(t_obj *obj, char *str);
+
+/*
+**	Data processing functions
+*/
+bool						obj_process_face(t_obj *obj, char *str);
+bool						obj_process_face_data_dispatch(t_obj *obj, \
+															char *str, \
+															int mod, \
+															int index);
+bool						obj_process_face_quad(t_obj *obj, \
+													char **split, int index);
+bool						obj_process_face_triangle(t_obj *obj, \
+													char **split, int index);
+int							obj_process_face_type_get(char *sample);
+bool						obj_process_normal(t_obj *obj, char *str);
+bool						obj_process_space(t_obj *obj, char *str);
+bool						obj_process_texture(t_obj *obj, char *str);
+bool						obj_process_vertex(t_obj *obj, char *str);
 
 /*
 **	Error handling functions

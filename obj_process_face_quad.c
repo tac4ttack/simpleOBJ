@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mesh_process_face_quad.c                           :+:      :+:    :+:   */
+/*   obj_process_face_quad.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scop.h"
+#include "simpleOBJ.h"
 
-bool		mesh_process_face_quad(t_mesh *mesh, char **split, int index)
+bool		obj_process_face_quad(t_obj *obj, char **split, int index)
 {
 	char	*new[2][3];
 
-	if (mesh && split)
+	if (obj && split)
 	{
 		new[0][0] = split[0];
 		new[0][1] = split[1];
@@ -24,15 +24,15 @@ bool		mesh_process_face_quad(t_mesh *mesh, char **split, int index)
 		new[1][0] = split[0];
 		new[1][1] = split[2];
 		new[1][2] = split[3];
-		if (!(mesh_process_face_triangle(mesh, new[0], index)))
-			return (error_bool("[ERROR mesh_process_face_quad]\t" \
-			"Failed to retrieve data from first new triangle!\n"));
-		index = (++mesh->n_face[1] - 1) * 9;
-		if (!(mesh_process_face_triangle(mesh, new[1], index)))
-			return (error_bool("[ERROR mesh_process_face_quad]\t" \
-			"Failed to retrieve data from second new triangle!\n"));
+		if (!(obj_process_face_triangle(obj, new[0], index)))
+			return (obj_berror("[ERROR obj_process_face_quad]\t" \
+			"Failed to retrieve data from first new triangle!\n", NULL));
+		index = (++obj->n_face[1] - 1) * 9;
+		if (!(obj_process_face_triangle(obj, new[1], index)))
+			return (obj_berror("[ERROR obj_process_face_quad]\t" \
+			"Failed to retrieve data from second new triangle!\n", NULL));
 		return (true);
 	}
-	return (error_bool("[ERROR mesh_process_face_quad]\t" \
-	"NULL mesh or split pointer!\n"));
+	return (obj_berror("[ERROR obj_process_face_quad]\t" \
+	"NULL mesh or split pointer!\n", NULL));
 }

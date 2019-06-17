@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 11:37:40 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 17:26:09 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:16:29 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	obj_line_process_validate_face(t_obj *obj, char *str)
 
 	if (obj && str)
 	{
-		if (!(face_split = ft_strsplit(str, ' ')))
+		if (!(face_split = obj_strsplit(str, ' ')))
 			return (obj_berror("[ERROR obj_line_process_validate_face]\t" \
 			"Split for validating face element failed!\n", NULL));
 		len = obj_strsplit_len(face_split);
@@ -131,8 +131,8 @@ bool		obj_line_process(t_obj *obj, char **split)
 	{
 		fprintf(stdout, "\nMESH DATA PARSING:\n", NULL);
 		if (!(obj_line_preprocess(obj, split)))
-			return (error_bool("[ERROR obj_line_process]\t" \
-			"Mesh file pre processing failed!\n"));
+			return (obj_berror("[ERROR obj_line_process]\t" \
+			"Mesh file pre processing failed!\n", NULL));
 		while (*split)
 		{
 			if ((failure = !obj_line_process_dispatch(obj, *split)))
