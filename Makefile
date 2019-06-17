@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:17:28 by fmessina          #+#    #+#              #
-#    Updated: 2019/06/17 18:28:40 by fmessina         ###   ########.fr        #
+#    Updated: 2019/06/17 19:41:03 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ $(NAME): simpleOBJ.h $(SRC) $(OFILES)
 	@echo "Library indexed\n"
 
 debug:
-	$(eval DEBUGFLAGS = -DDEBUG_OBJ -g)
+	$(eval DEBUGFLAGS = -DDEBUG_SIMPLE_OBJ -g)
 
 debug_asan: debug
 	$(eval ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer)

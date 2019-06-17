@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 18:27:59 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:31:55 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:35:14 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,12 @@ bool	obj_log_error(const char *message, ...)
 	va_start(argptr, message);
 	vfprintf(file, message, argptr);
 	va_end(argptr);
-	va_start(argptr, message);
-	vfprintf(stderr, message, argptr);
-	va_end(argptr);
+	if (DEBUG_OBJ)
+	{
+		va_start(argptr, message);
+		vfprintf(stderr, message, argptr);
+		va_end(argptr);
+	}
 	fclose(file);
 	return (true);
 }
@@ -73,9 +76,12 @@ bool		obj_log(const char *message, ...)
 	va_start(argptr, message);
 	vfprintf(file, message, argptr);
 	va_end(argptr);
-	va_start(argptr, message);
-	vprintf(message, argptr);
-	va_end(argptr);
+	if (DEBUG_OBJ)
+	{
+		va_start(argptr, message);
+		vprintf(message, argptr);
+		va_end(argptr);
+	}
 	fclose(file);
 	return (true);
 }

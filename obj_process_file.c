@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:51:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:59:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:31:34 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ t_obj			*obj_process_file(char *data)
 
 	if (data)
 	{
-		fprintf(stdout, "[simpleOBJ] Processing mesh...");
-		obj = NULL;
 		assert(obj_log_init());
+		obj_log("[simpleOBJ] Processing mesh...\n");
+		obj = NULL;
 		if (!(data = obj_strtrim(data)))
 			return (obj_error("[ERROR obj_file_process]\t" \
 					"Mesh data trimming failed!\n", data));
@@ -71,7 +71,8 @@ t_obj			*obj_process_file(char *data)
 			"[ERROR obj_file_process]\tMesh line processing failed!\n"));
 		obj_strsplit_destroy(split);
 		obj_memdel((void**)(&data));
-		fprintf(stdout, "[simpleOBJ] Finished processing mesh...");
+		obj_print_data(obj);
+		obj_log("[simpleOBJ] Finished processing mesh...\n");
 		return (obj);
 	}
 	return (obj_error("[ERROR obj_process_file]\tData pointer NULL!\n", NULL));

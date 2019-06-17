@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:29:03 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:51:01 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:31:35 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char			*obj_file_dump(const int fd, const size_t target_size)
 		}
 		((char *)(data))[read_status] = 0;
 		close(fd);
-		obj_log("[simpleOBJ] Mesh raw data successfully read...");
+		obj_log("[simpleOBJ] Mesh raw data successfully read...\n");
 		return (data);
 	}
 	return (obj_error("[ERROR mesh_dump_data]\t" \
@@ -76,7 +76,7 @@ t_obj				*obj_load_file(char *target)
 
 	if (target)
 	{
-		obj_log("[simpleOBJ] Loading mesh...");
+		obj_log("[simpleOBJ] Loading mesh...\n");
 		if (!(obj_file_open(target, &len, &fd)))
 		{
 			return (obj_error("[ERROR obj_load_file]\t"

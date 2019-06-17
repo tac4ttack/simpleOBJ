@@ -6,12 +6,18 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:43:23 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:40:44 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SIMPLE_OBJ_PARSER_H
 # define SIMPLE_OBJ_PARSER_H
+
+# ifdef DEBUG_SIMPLE_OBJ
+#  define DEBUG_OBJ 1
+# else
+#  define DEBUG_OBJ	0
+# endif
 
 # include <stdbool.h>	// required for bool type
 # include <fcntl.h>		// required for open()
@@ -32,7 +38,7 @@
 # define CHARSET_F				 "f \t/-0123456789"
 # define CHARSET_L 				"l \t-0123456789"
 
-# define SIMPLE_OBJ_LOG_FILE "simpleOBJ_error.log"
+# define SIMPLE_OBJ_LOG_FILE "simpleOBJ.log"
 
 typedef struct	s_vec3
 {
