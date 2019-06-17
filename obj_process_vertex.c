@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:58:21 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:24:40 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:45:30 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static bool		check_vertex_data(t_obj *obj, const int index, const int ret)
 	"NULL mesh pointer!\n", NULL));
 }
 
-bool	mesh_process_vertex(t_obj *obj, char *str)
+bool	obj_process_vertex(t_obj *obj, char *str)
 {
 	int			i[2];
 

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:36:03 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:43:23 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@
 
 # define SIMPLE_OBJ_LOG_FILE "simpleOBJ_error.log"
 
-typedef struct	s_vec3f
+typedef struct	s_vec3
 {
 	float			x;
 	float			y;
 	float			z;
-}					t_vec3f;
+}					t_vec3;
 
 /*
 **	MESH DATA STRUCT:
@@ -99,7 +99,7 @@ typedef struct					s_obj
 	float						*space;
 	size_t						n_space[2];
 
-	t_vec3f						axis[3];	//DO THE AXIS CENTERING
+	t_vec3						axis[3];	//DO THE AXIS CENTERING
 }								t_obj;
 
 

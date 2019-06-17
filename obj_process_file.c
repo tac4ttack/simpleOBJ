@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:51:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:30:54 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:47:34 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,16 @@ t_obj			*obj_process_file(char *data)
 		if (!(data = obj_strtrim(data)))
 			return (obj_error("[ERROR obj_file_process]\t" \
 					"Mesh data trimming failed!\n", data));
-			if (!(split = obj_strsplit(data, '\n')))
+		if (!(split = obj_strsplit(data, '\n')))
 			return (obj_error("[ERROR obj_file_process]\t" \
 					"Mesh data split failed!\n", data));
-			if (!(obj = create_mesh(obj)))
+		if (!(obj = create_mesh(obj)))
 			return (obj_processing_error(obj, split, \
 					"[ERROR obj_file_process]\tMesh data creation failed!\n"));
-			if (!(obj_line_process(obj, split)))
+		if (!(obj_line_process(obj, split)))
 			return (obj_processing_error(obj, split, \
 			"[ERROR obj_file_process]\tMesh line processing failed!\n"));
-			obj_strsplit_destroy(split);
+		obj_strsplit_destroy(split);
 		fprintf(stdout, "[simpleOBJ] Finished processing mesh...");
 		return (obj);
 	}
