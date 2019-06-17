@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:51:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:47:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:59:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_obj			*obj_process_file(char *data)
 			return (obj_processing_error(obj, split, \
 			"[ERROR obj_file_process]\tMesh line processing failed!\n"));
 		obj_strsplit_destroy(split);
+		obj_memdel((void**)(&data));
 		fprintf(stdout, "[simpleOBJ] Finished processing mesh...");
 		return (obj);
 	}
