@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:29:03 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 19:31:35 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 22:13:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,29 @@ static bool			obj_file_open(const char *target, size_t *size, int *fd)
 	}
 	if (stat(target, &file_stat) != 0)
 	{
-		return (-1);
+		return (obj_berror("[ERROR obj_file_open]\t"
+			"Failed to get mesh file info!\n", NULL));
 	}
 	else
 	{
-		if (S_ISDIR(file_stat.st_mode))
+		if ((S_ISDIR(file_stat.st_mode)) \
+			|| ((*size = (size_t)file_stat.st_size) <= 0))
 		{
-			return (obj_berror("[ERROR obj_get_file_size]\t" \
-			"Target is a directory!\n", NULL));
+			return (obj_berror("[ERROR obj_file_open]\t" \
+			"Target is invalid (is a directory or its size == 0)!\n", NULL));
 		}
 		else
 		{
-			*size = (size_t)file_stat.st_size;
+			// *size = (size_t)file_stat.st_size;
+			// if (((*size = (size_t)file_stat.st_size) > 0))
+			fprintf(stdout, "mesh file size control = %zu\n", *size);
+			fprintf(stdout, "ici ca a pas lair de foirer meme lorsque la taille = 0?????????????\n", NULL);
 			return (true);
+			// else
+			// {
+			// 	return (obj_berror("[ERROR obj_get_file_size]\t" \
+			// 	"Target seems empty (its size == 0)!\n", NULL));
+			// }
 		}
 	}
 }
@@ -76,6 +86,12 @@ t_obj				*obj_load_file(char *target)
 
 	if (target)
 	{
+		///////////////////////////
+		fprintf(stdout, "BIG PROBLEM HERE WITh EMPTY FILES, RESUME HERE YOU "
+						"DIRTY LITTLE SHIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n", NULL);
+		///////////////////////////
+		
+		assert(obj_log_init());
 		obj_log("[simpleOBJ] Loading mesh...\n");
 		if (!(obj_file_open(target, &len, &fd)))
 		{

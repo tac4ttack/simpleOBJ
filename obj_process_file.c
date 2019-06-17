@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:51:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 19:31:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 21:56:57 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static t_obj	*create_mesh(t_obj *target)
 	target->group = NULL;
 	target->mtllib = NULL;
 	target->usemtl = NULL;
-	target->prepack_vao = NULL;
-	target->prepack_ebo = NULL;
+	// target->prepack_vao = NULL; 
+	// target->prepack_ebo = NULL;
 	target->vertex = NULL;
 	target->face = NULL;
 	target->normal = NULL;
@@ -54,21 +54,28 @@ t_obj			*obj_process_file(char *data)
 
 	if (data)
 	{
-		assert(obj_log_init());
 		obj_log("[simpleOBJ] Processing mesh...\n");
 		obj = NULL;
 		if (!(data = obj_strtrim(data)))
-			return (obj_error("[ERROR obj_file_process]\t" \
+		{
+			return (obj_error("[ERROR obj_process_file]\t" \
 					"Mesh data trimming failed!\n", data));
+		}
 		if (!(split = obj_strsplit(data, '\n')))
-			return (obj_error("[ERROR obj_file_process]\t" \
+		{
+			return (obj_error("[ERROR obj_process_file]\t" \
 					"Mesh data split failed!\n", data));
+		}
 		if (!(obj = create_mesh(obj)))
+		{
 			return (obj_processing_error(obj, split, \
-					"[ERROR obj_file_process]\tMesh data creation failed!\n"));
+					"[ERROR obj_process_file]\tMesh data creation failed!\n"));
+		}
 		if (!(obj_line_process(obj, split)))
+		{
 			return (obj_processing_error(obj, split, \
-			"[ERROR obj_file_process]\tMesh line processing failed!\n"));
+			"[ERROR obj_process_file]\tMesh line processing failed!\n"));
+		}
 		obj_strsplit_destroy(split);
 		obj_memdel((void**)(&data));
 		obj_print_data(obj);
