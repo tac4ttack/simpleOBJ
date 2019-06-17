@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_error.c                                        :+:      :+:    :+:   */
+/*   obj_print_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/17 12:30:40 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:28:13 by fmessina         ###   ########.fr       */
+/*   Created: 2019/02/19 16:36:33 by fmessina          #+#    #+#             */
+/*   Updated: 2019/06/17 18:36:52 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleOBJ.h"
 
-bool	obj_berror(const char *message, void *trash)
+void	obj_print_data(t_obj *obj)
 {
-	if (trash)
-	{
-		(void)trash;
-	}
-	fprintf(stderr, "OBJ Loading error: %s\n", message);
-	return (false);
-}
-
-void	*obj_error(const char *message, void *trash)
-{
-	if (trash)
-	{
-		obj_memdel((void**)(&trash));
-	}
-	fprintf(stderr, "OBJ Loading error: %s\n", message);
-	return (NULL);
+	if (obj->vertex)
+		obj_print_data_vertex(obj);
+	if (obj->normal)
+		obj_print_data_normal(obj);
+	if (obj->texture)
+		obj_print_data_texture(obj);
+	// if (obj->space) // TODO!!!!!
+		// obj_print_data_space(obj);
+	if (obj->face)
+		obj_print_data_face(obj);
+	obj_log("\n\n", NULL);
 }

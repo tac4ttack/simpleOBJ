@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_error.c                                        :+:      :+:    :+:   */
+/*   obj_print_data_texture.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/17 12:30:40 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:28:13 by fmessina         ###   ########.fr       */
+/*   Created: 2019/02/26 14:17:46 by fmessina          #+#    #+#             */
+/*   Updated: 2019/06/17 18:34:37 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "simpleOBJ.h"
 
-bool	obj_berror(const char *message, void *trash)
+void		obj_print_data_texture(t_obj *obj)
 {
-	if (trash)
-	{
-		(void)trash;
-	}
-	fprintf(stderr, "OBJ Loading error: %s\n", message);
-	return (false);
-}
+	size_t	i;
 
-void	*obj_error(const char *message, void *trash)
-{
-	if (trash)
+	if (obj && !(i = 0))
 	{
-		obj_memdel((void**)(&trash));
+		obj_log("\nTexture coordinates data =\n--------------------------\n");
+		while (i < obj->n_texture[1])
+		{
+			obj_log("vt[%d]\t=\t%f %f %f\n", i, \
+			obj->texture[(i * 3)], \
+			obj->texture[(i * 3) + 1], \
+			obj->texture[(i * 3) + 2]);
+			i++;
+		}
 	}
-	fprintf(stderr, "OBJ Loading error: %s\n", message);
-	return (NULL);
 }

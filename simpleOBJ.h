@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:24:11 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:36:03 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define CHARSET_F				 "f \t/-0123456789"
 # define CHARSET_L 				"l \t-0123456789"
 
-# define SIMPLE_OBJ_ERROR_LOG_FILENAME "simpleOBJ_error.log"
+# define SIMPLE_OBJ_LOG_FILE "simpleOBJ_error.log"
 
 typedef struct	s_vec3f
 {
@@ -143,8 +143,22 @@ bool						obj_process_vertex(t_obj *obj, char *str);
 */
 void							*obj_error(const char *message, void *trash);
 bool							obj_berror(const char *message, void *trash);
-bool							obj_error_log_init(void);
-bool							obj_logged_berror(const char *message, ...);
+
+/*
+**	Logging functions
+*/
+bool							obj_log_init(void);
+bool							obj_log(const char *message, ...);
+bool							obj_log_error(const char *message, ...);
+
+/*
+**	Data printing functions
+*/
+void							obj_print_data(t_obj *obj);
+void							obj_print_data_face(t_obj *obj);
+void							obj_print_data_normal(t_obj *obj);
+void							obj_print_data_texture(t_obj *obj);
+void							obj_print_data_vertex(t_obj *obj);
 
 /*
 **	Memory management functions

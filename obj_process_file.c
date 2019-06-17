@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:51:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:23:54 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:30:54 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_obj			*obj_process_file(char *data)
 	{
 		fprintf(stdout, "[simpleOBJ] Processing mesh...");
 		obj = NULL;
-		assert(obj_error_log_init());
+		assert(obj_log_init());
 		if (!(data = obj_strtrim(data)))
 			return (obj_error("[ERROR obj_file_process]\t" \
 					"Mesh data trimming failed!\n", data));

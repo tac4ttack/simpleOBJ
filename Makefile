@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:17:28 by fmessina          #+#    #+#              #
-#    Updated: 2019/06/17 17:19:37 by fmessina         ###   ########.fr        #
+#    Updated: 2019/06/17 18:28:40 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,12 @@ SRC =		obj_clean.c \
 			obj_line_process_vp.c \
 			obj_line_process_vt.c \
 			obj_load_file.c \
+			obj_log.c \
+			obj_print_data_face.c \
+			obj_print_data_normal.c \
+			obj_print_data_texture.c \
+			obj_print_data_vertex.c \
+			obj_print_data.c \
 			obj_process_face.c \
 			obj_process_face_data.c \
 			obj_process_face_get_type.c \

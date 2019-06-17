@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 11:37:40 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:16:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:30:01 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	obj_line_process_validate_face(t_obj *obj, char *str)
 		len = obj_strsplit_len(face_split);
 		obj_strsplit_destroy(face_split);
 		if (len < 4 || len > 5)
-			return (!(obj_logged_berror("[ERROR obj_line_process_validate_face]"
+			return (!(obj_log_error("[ERROR obj_line_process_validate_face]"
 			"\tFace element is not a triangle or a quad! ->\t %s\n", str)));
 		else if (len == 5)
 			obj->n_face[0] += 2;
@@ -136,7 +136,7 @@ bool		obj_line_process(t_obj *obj, char **split)
 		while (*split)
 		{
 			if ((failure = !obj_line_process_dispatch(obj, *split)))
-				return (!(obj_logged_berror("[ERROR obj_line_process]\t" \
+				return (!(obj_log_error("[ERROR obj_line_process]\t" \
 				"Following line is invalid! -> %s\n", *split)));
 			split++;
 		}
