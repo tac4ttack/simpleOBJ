@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/24 11:18:46 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/24 11:30:57 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct					s_obj
 	float						*vertex;
 	size_t						n_vertex[2];
 
-	unsigned int				*face;
+	int							*face;
 	size_t						n_face[2];
 
 	float						*normal;
