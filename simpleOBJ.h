@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 20:05:11 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/24 11:18:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,23 @@
 # define CHARSET_VT				"vt \t.-0123456789"
 # define CHARSET_VN				"vn \t.-0123456789"
 # define CHARSET_VP				"vp \t.-0123456789"
-# define CHARSET_F				 "f \t/-0123456789"
+# define CHARSET_F				"f \t/-0123456789"
 # define CHARSET_L 				"l \t-0123456789"
 
 # define SIMPLE_OBJ_LOG_FILE "simpleOBJ.log"
 
-typedef struct	s_vec3
+# ifndef STRUCT_VEC3F
+#  define STRUCT_VEC3F
+/*
+**	Vector 3 Floats [X Y Z]
+*/
+typedef struct	s_vec3f
 {
 	float			x;
 	float			y;
 	float			z;
-}					t_vec3;
+}					t_vec3f;
+# endif
 
 /*
 **	MESH DATA STRUCT:
@@ -55,27 +61,28 @@ typedef struct	s_vec3
 **	mtllib		->	mtllib specified file
 **	usemtl		->	material file specified
 **	shading		->	s line boolean
+**
 **	vertex		->	vertices array, defined with 4 components
 **	n_vertex	->	number of vertices, [0] is preprocessing count,
 **					[1] is for checksum and filling
+**
 **	face		->	face elements array
 **	n_face		->	face elements settings:
 **					[0] preprocessing count,
 **					[1] checksum control,
+**
 **	normal		->	vertices normal array
 **	n_normal	->	number of vertices normals:
 **					[0] is preprocessing count,
 **					[1] is for checksum and filling
+**
 **	texture		->	vertices texture coord array
 **	n_texture	->	number of vertices texture coord:
 **					[0] is preprocessing count,
 **					[1] is for checksum and filling
+**
 **	space		->	space vertices array
 **	n_space		->	number of space vertices:
-**					[0] is preprocessing count,
-**					[1] is for checksum and filling
-**	linel		->	polyline definition array
-**	n_line		->	number of polylines:
 **					[0] is preprocessing count,
 **					[1] is for checksum and filling
 */
@@ -105,7 +112,7 @@ typedef struct					s_obj
 	float						*space;
 	size_t						n_space[2];
 
-	t_vec3						axis[3];	//DO THE AXIS CENTERING
+	t_vec3f						axis[2];
 }								t_obj;
 
 
@@ -153,7 +160,7 @@ bool							obj_berror(const char *message, void *trash);
 /*
 **	Logging functions
 */
-bool							obj_log_init(void);
+bool							obj_log_init(const char *message, ...);
 bool							obj_log(const char *message, ...);
 bool							obj_log_error(const char *message, ...);
 
