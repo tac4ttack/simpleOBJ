@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 12:59:37 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 17:53:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/24 12:51:16 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static bool		create_face_array(t_obj *obj)
 
 	if (obj)
 	{
-		len = sizeof(unsigned int) * obj->n_face[0] * 9;
-		if (!(obj->face = (unsigned int *)malloc(len)))
+		len = sizeof(int) * obj->n_face[0] * 9;
+		if (!(obj->face = (int *)malloc(len)))
 			return (obj_berror("[ERROR create_face_array]\t" \
 			"Mesh face array memory allocation failed!\n", NULL));
 		memset(obj->face, 0, len);

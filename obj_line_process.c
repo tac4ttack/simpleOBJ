@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 11:37:40 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:30:01 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/24 12:55:14 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static bool	obj_line_preprocess(t_obj *obj, char **split)
 		}
 
 		// DEBUG TO REMOVE
-		obj->n_space[0] = 0;
-		obj->n_space[1] = 0;
+		// obj->n_space[0] = 0;
+		// obj->n_space[1] = 0;
 
 		if (obj->n_vertex[0] < 3)
 			return (obj_berror("[ERROR obj_line_preprocess]\t" \
@@ -113,8 +113,8 @@ static bool	obj_line_process_dispatch(t_obj *obj, char *str)
 			failure = obj_line_process_vt(obj, str);
 		else if (strncmp(str, "vn ", 3) == 0)
 			failure = obj_line_process_vn(obj, str);
-		// else if (strncmp(str, "vp ", 3) == 0)
-		// 	failure = obj_line_process_vp(obj, str);
+		else if (strncmp(str, "vp ", 3) == 0)
+			failure = obj_line_process_vp(obj, str);
 		else
 			failure = true;
 		return (failure);
