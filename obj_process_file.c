@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:51:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 21:56:57 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/06/25 16:54:17 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ t_obj			*obj_process_file(char *data)
 		}
 		obj_strsplit_destroy(split);
 		obj_memdel((void**)(&data));
-		obj_print_data(obj);
+		if (DEBUG_OBJ)
+			obj_print_data(obj);
 		obj_log("[simpleOBJ] Finished processing mesh...\n");
 		return (obj);
 	}
