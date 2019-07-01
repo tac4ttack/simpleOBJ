@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:30:40 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 20:10:39 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 bool	obj_berror(const char *message, void *trash)
 {

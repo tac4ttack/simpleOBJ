@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 16:36:33 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:36:52 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:36:24 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 void	obj_print_data(t_obj *obj)
 {
@@ -20,8 +20,6 @@ void	obj_print_data(t_obj *obj)
 		obj_print_data_normal(obj);
 	if (obj->texture)
 		obj_print_data_texture(obj);
-	// if (obj->space) // TODO!!!!!
-		// obj_print_data_space(obj);
 	if (obj->face)
 		obj_print_data_face(obj);
 	obj_log("\n\n", NULL);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_print_data_normal.c                           :+:      :+:    :+:   */
+/*   obj_print_data_normal.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/26 14:38:08 by fmessina          #+#    #+#             */
-/*   Updated: 2019/03/06 14:45:13 by fmessina         ###   ########.fr       */
+/*   Created: 2019/07/01 15:39:58 by fmessina          #+#    #+#             */
+/*   Updated: 2019/07/01 15:39:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 void		obj_print_data_normal(t_obj *obj)
 {

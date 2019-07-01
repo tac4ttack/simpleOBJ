@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simpleOBJ.h                                        :+:      :+:    :+:   */
+/*   simple_obj.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/24 11:52:16 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:27:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIMPLE_OBJ_PARSER_H
-# define SIMPLE_OBJ_PARSER_H
+#ifndef SIMPLE_OBJ_H
+# define SIMPLE_OBJ_H
 
 # ifdef DEBUG_SIMPLE_OBJ
 #  define DEBUG_OBJ 1
@@ -19,17 +19,17 @@
 #  define DEBUG_OBJ	0
 # endif
 
-# include <stdbool.h>	// required for bool type
-# include <fcntl.h>		// required for open()
-# include <unistd.h>	// required for read() and close()
-# include <stdio.h>		// required for FILE printf etc
-# include <sys/stat.h>	// required for stat()
+# include <stdbool.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <sys/stat.h>
 # include <stdlib.h>
 # include <string.h>
-# include <math.h>		// required for sin() etc
-# include <time.h>		// required for time()
-# include <stdarg.h>	// required for va_arg
-# include <assert.h>	// required for assert()
+# include <math.h>
+# include <time.h>
+# include <stdarg.h>
+# include <assert.h>
 
 # define CHARSET_V				"v \t.-0123456789"
 # define CHARSET_VT				"vt \t.-0123456789"
@@ -42,15 +42,16 @@
 
 # ifndef STRUCT_VEC3F
 #  define STRUCT_VEC3F
+
 /*
 **	Vector 3 Floats [X Y Z]
 */
-typedef struct	s_vec3f
+typedef struct					s_vec3f
 {
-	float			x;
-	float			y;
-	float			z;
-}					t_vec3f;
+	float						x;
+	float						y;
+	float						z;
+}								t_vec3f;
 # endif
 
 /*
@@ -112,41 +113,40 @@ typedef struct					s_obj
 	t_vec3f						axis[2];
 }								t_obj;
 
-
 /*
 **	simpleOBJ parser core functions
 */
-t_obj						*obj_load_file(char *target);
-t_obj						*obj_process_file(char *data);
+t_obj							*obj_load_file(char *target);
+t_obj							*obj_process_file(char *data);
 
 /*
 **	Line parsing functions
 */
-bool						obj_line_process(t_obj *obj, char **split);
-bool						obj_line_process_check(char *str, char *charset);
-bool						obj_line_process_f(t_obj *obj, char *str);
-bool						obj_line_process_v(t_obj *obj, char *str);
-bool						obj_line_process_vn(t_obj *obj, char *str);
-bool						obj_line_process_vp(t_obj *obj, char *str);
-bool						obj_line_process_vt(t_obj *obj, char *str);
+bool							obj_line_process(t_obj *obj, char **split);
+bool							obj_line_process_check(char *str, char *set);
+bool							obj_line_process_f(t_obj *obj, char *str);
+bool							obj_line_process_v(t_obj *obj, char *str);
+bool							obj_line_process_vn(t_obj *obj, char *str);
+bool							obj_line_process_vp(t_obj *obj, char *str);
+bool							obj_line_process_vt(t_obj *obj, char *str);
 
 /*
 **	Data processing functions
 */
-bool						obj_process_face(t_obj *obj, char *str);
-bool						obj_process_face_data_dispatch(t_obj *obj, \
+bool							obj_process_face(t_obj *obj, char *str);
+bool							obj_process_face_data_dispatch(t_obj *obj, \
 															char *str, \
 															int mod, \
 															int index);
-bool						obj_process_face_quad(t_obj *obj, \
+bool							obj_process_face_quad(t_obj *obj, \
 													char **split, int index);
-bool						obj_process_face_triangle(t_obj *obj, \
+bool							obj_process_face_triangle(t_obj *obj, \
 													char **split, int index);
-int							obj_process_face_type_get(char *sample);
-bool						obj_process_normal(t_obj *obj, char *str);
-bool						obj_process_space(t_obj *obj, char *str);
-bool						obj_process_texture(t_obj *obj, char *str);
-bool						obj_process_vertex(t_obj *obj, char *str);
+int								obj_process_face_type_get(char *sample);
+bool							obj_process_normal(t_obj *obj, char *str);
+bool							obj_process_space(t_obj *obj, char *str);
+bool							obj_process_texture(t_obj *obj, char *str);
+bool							obj_process_vertex(t_obj *obj, char *str);
 
 /*
 **	Error handling functions

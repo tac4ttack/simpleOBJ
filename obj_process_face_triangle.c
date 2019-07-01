@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 15:42:33 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 17:44:12 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 16:46:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 bool		obj_process_face_triangle(t_obj *obj, char **split, int index)
 {
@@ -22,17 +22,14 @@ bool		obj_process_face_triangle(t_obj *obj, char **split, int index)
 	{
 		i = 0;
 		if ((mod = obj_process_face_type_get(*split)) == -1)
-			return (obj_berror("[ERROR obj_process_face_triangle]\t" \
-			"Face element type recognized!\n", NULL));
+			return (obj_berror("Invalid face element type!\n", NULL));
 		while (i++ < 3)
 		{
 			if (mod != obj_process_face_type_get(*split))
-				return (obj_berror("[ERROR obj_process_face_triangle]\t"
-				"Face element type has changed!\n", NULL));
+				return (obj_berror("Face element type has changed!\n", NULL));
 			fail = !obj_process_face_data_dispatch(obj, *split, mod, index);
 			if (fail)
-				return (obj_berror("[ERROR obj_process_face_triangle]\t"
-				"Failed to retrieve face element data!\n", NULL));
+				return (obj_berror("Failed to retrieve face data!\n", NULL));
 			index += 3;
 			split++;
 		}

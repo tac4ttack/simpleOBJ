@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 13:09:27 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 13:31:39 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 char	*obj_strtrim(char *s)
 {

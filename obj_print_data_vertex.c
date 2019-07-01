@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/23 15:07:38 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:34:49 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 void		obj_print_data_vertex(t_obj *obj)
 {

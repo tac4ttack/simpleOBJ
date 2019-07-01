@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 18:27:59 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/24 10:26:53 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 bool		obj_log_init(const char *message, ...)
 {

@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 15:59:07 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/17 18:20:35 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 /*
 **	obj_process_face_type_get():

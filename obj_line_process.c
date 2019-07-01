@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 11:37:40 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/24 12:55:14 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:47:15 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 static bool	obj_line_process_validate_face(t_obj *obj, char *str)
 {
@@ -20,8 +20,10 @@ static bool	obj_line_process_validate_face(t_obj *obj, char *str)
 	if (obj && str)
 	{
 		if (!(face_split = obj_strsplit(str, ' ')))
-			return (obj_berror("[ERROR obj_line_process_validate_face]\t" \
+		{
+			return (obj_berror("[ERROR obj_line_process_validate_face]\t"
 			"Split for validating face element failed!\n", NULL));
+		}
 		len = obj_strsplit_len(face_split);
 		obj_strsplit_destroy(face_split);
 		if (len < 4 || len > 5)
@@ -49,22 +51,17 @@ static bool	obj_line_preprocess(t_obj *obj, char **split)
 			(strncmp(*split, "vp ", 3) == 0 ? obj->n_space[0]++ : 0);
 			if (strncmp(*split, "f ", 2) == 0)
 				if (!(obj_line_process_validate_face(obj, *split)))
+				{
 					return (obj_berror("[ERROR obj_line_preprocess]\t" \
 					"Face elements must be triangles or quads only!\n", NULL));
+				}
 			split++;
 		}
-
-		// DEBUG TO REMOVE
-		// obj->n_space[0] = 0;
-		// obj->n_space[1] = 0;
-
 		if (obj->n_vertex[0] < 3)
-			return (obj_berror("[ERROR obj_line_preprocess]\t" \
+		{
+			return (obj_berror("[ERROR obj_line_preprocess]\t"
 			"The mesh needs at lest 3 vertices!\n", NULL));
-		fprintf(stdout, "Preprocessing:\n%zu Vertices\n%zu Polygons\n%zu Ve" \
-		"rtex texture coordinates\n%zu Vertex normals\n%zu Space vertices\n", \
-		obj->n_vertex[0], obj->n_face[0], obj->n_texture[0], \
-		obj->n_normal[0], obj->n_space[0]);
+		}
 		return (true);
 	}
 	return (obj_berror("[ERROR obj_line_preprocess]\t" \
@@ -131,16 +128,20 @@ bool		obj_line_process(t_obj *obj, char **split)
 	{
 		fprintf(stdout, "\nMESH DATA PARSING:\n", NULL);
 		if (!(obj_line_preprocess(obj, split)))
-			return (obj_berror("[ERROR obj_line_process]\t" \
+		{
+			return (obj_berror("[ERROR obj_line_process]\t"
 			"Mesh file pre processing failed!\n", NULL));
+		}
 		while (*split)
 		{
 			if ((failure = !obj_line_process_dispatch(obj, *split)))
-				return (!(obj_log_error("[ERROR obj_line_process]\t" \
+			{
+				return (!(obj_log_error("[ERROR obj_line_process]\t"
 				"Following line is invalid! -> %s\n", *split)));
+			}
 			split++;
 		}
 		return (obj_line_process_checksum(obj));
 	}
-	return (obj_berror("[ERROR obj_line_process]\tNULL param pointer!\n", NULL));
+	return (obj_berror("[ERROR obj_line_process]\tNULL mesh pointer!\n", NULL));
 }

@@ -6,16 +6,17 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:29:03 by fmessina          #+#    #+#             */
-/*   Updated: 2019/06/24 11:06:57 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/01 15:39:36 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "simpleOBJ.h"
+#include "simple_obj.h"
 
 static bool			obj_file_open(const char *target, size_t *size, int *fd)
 {
 	struct stat		file_stat;
 
+	assert(obj_log_init("[simpleOBJ] Loading mesh...\n", NULL));
 	if ((*fd = open(target, O_RDONLY)) < 0)
 	{
 		return (obj_berror("[ERROR obj_file_open]\t"
@@ -35,9 +36,7 @@ static bool			obj_file_open(const char *target, size_t *size, int *fd)
 			"Target is invalid (is a directory or is empty)!\n", NULL));
 		}
 		else
-		{
 			return (true);
-		}
 	}
 }
 
@@ -77,7 +76,6 @@ t_obj				*obj_load_file(char *target)
 
 	if (target)
 	{
-		assert(obj_log_init("[simpleOBJ] Loading mesh...\n", NULL));
 		if (!(obj_file_open(target, &len, &fd)))
 		{
 			return (obj_error("[ERROR obj_load_file]\t"

@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:17:28 by fmessina          #+#    #+#              #
-#    Updated: 2019/06/17 19:41:03 by fmessina         ###   ########.fr        #
+#    Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,9 @@ SRC =		obj_clean.c \
 
 OFILES =	$(SRC:.c=.o)
 
-all: Makefile simpleOBJ.h $(NAME)
+all: Makefile simple_obj.h $(NAME)
 
-$(NAME): simpleOBJ.h $(SRC) $(OFILES)
+$(NAME): simple_obj.h $(SRC) $(OFILES)
 	@echo "Object files successfully created"
 	@echo "Building library $(NAME)..."
 	@ar rc $(NAME) $(OFILES)
