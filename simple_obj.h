@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 16:27:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/02 12:57:32 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,13 @@ typedef struct					s_obj
 */
 t_obj							*obj_load_file(char *target);
 t_obj							*obj_process_file(char *data);
+
+/*
+**	Parsing checksum functions
+*/
+bool							obj_checksum_preprocess(t_obj *obj, \
+														char **split);
+bool							obj_checksum_check(t_obj *obj);
 
 /*
 **	Line parsing functions

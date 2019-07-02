@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:17:28 by fmessina          #+#    #+#              #
-#    Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr        #
+#    Updated: 2019/07/02 12:58:00 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME =		simpleOBJ.a
 CC =		clang
 CFLAGS +=	-Wall -Wextra -Werror $(DEBUGFLAGS) $(ASANFLAGS)
 
-SRC =		obj_clean.c \
+SRC =		obj_checksum.c \
+			obj_clean.c \
 			obj_error.c \
 			obj_line_process.c \
 			obj_line_process_check.c \
