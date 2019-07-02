@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 15:34:12 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/02 17:00:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/02 17:01:19 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ bool	obj_process_vertex_xyz(t_obj *obj, char **split, size_t i)
 		sscanf(split[2], "%f", &obj->vertex[i + 1]);
 		sscanf(split[3], "%f", &obj->vertex[i + 2]);
 		obj->vertex[i + 3] = 1.f;
-		obj_hue_process(obj, i, 0);
 		obj_strsplit_destroy(split);
 		obj_hue_process(obj, i, 1);
 		return (true);
@@ -37,7 +36,6 @@ bool	obj_process_vertex_xyzw(t_obj *obj, char **split, size_t i)
 		sscanf(split[2], "%f", &obj->vertex[i + 1]);
 		sscanf(split[3], "%f", &obj->vertex[i + 2]);
 		sscanf(split[4], "%f", &obj->vertex[i + 3]);
-		obj_hue_process(obj, i, 0);
 		obj_strsplit_destroy(split);
 		obj_hue_process(obj, i, 1);
 		return (true);
