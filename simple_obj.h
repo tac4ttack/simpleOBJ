@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/02 12:57:32 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/02 15:58:29 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,28 @@ bool							obj_process_normal(t_obj *obj, char *str);
 bool							obj_process_space(t_obj *obj, char *str);
 bool							obj_process_texture(t_obj *obj, char *str);
 bool							obj_process_vertex(t_obj *obj, char *str);
+
+/*
+**	Vertex data processing functions
+*/
+bool							obj_process_vertex_xyz(t_obj *obj, \
+														char **split, \
+														size_t i);
+bool							obj_process_vertex_xyzw(t_obj *obj, \
+														char **split, \
+														size_t i);
+bool							obj_process_vertex_xyzrgb(t_obj *obj, \
+														char **split, \
+														size_t i);
+bool							obj_process_vertex_xyzrgba(t_obj *obj, \
+														char **split, \
+														size_t i);
+bool							obj_process_vertex_xyzwrgba(t_obj *obj, \
+														char **split, \
+														size_t i);
+bool							obj_hue_process(t_obj *obj, \
+												const int i, \
+												const int mod);
 
 /*
 **	Error handling functions

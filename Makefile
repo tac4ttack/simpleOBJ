@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 12:17:28 by fmessina          #+#    #+#              #
-#    Updated: 2019/07/02 12:58:00 by fmessina         ###   ########.fr        #
+#    Updated: 2019/07/02 15:34:35 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CFLAGS +=	-Wall -Wextra -Werror $(DEBUGFLAGS) $(ASANFLAGS)
 SRC =		obj_checksum.c \
 			obj_clean.c \
 			obj_error.c \
+			obj_hue.c \
 			obj_line_process.c \
 			obj_line_process_check.c \
 			obj_line_process_f.c \
@@ -42,6 +43,7 @@ SRC =		obj_checksum.c \
 			obj_process_space.c \
 			obj_process_texture.c \
 			obj_process_vertex.c \
+			obj_process_vertex_data.c \
 			obj_strnew.c \
 			obj_strsplit.c \
 			obj_strsub.c \

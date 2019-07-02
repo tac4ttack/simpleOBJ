@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:58:21 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 16:38:55 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/02 17:00:40 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,63 +31,53 @@ static bool		create_v_array(t_obj *obj)
 	"NULL mesh pointer!\n", NULL));
 }
 
-static bool		fill_vertex_hue(t_obj *obj, const int index)
+static char		*print_vertex_format(void)
 {
-	if (obj)
-	{
-		obj->vertex[index + 4] = ((float)rand() / (float)(RAND_MAX)) * 1.0f;
-		obj->vertex[index + 5] = ((float)rand() / (float)(RAND_MAX)) * 1.0f;
-		obj->vertex[index + 6] = ((float)rand() / (float)(RAND_MAX)) * 1.0f;
-		obj->vertex[index + 7] = 1.0f;
-		return (true);
-	}
-	return (obj_berror("[ERROR fill_vertex_hue]\tNULL mesh pointer!\n", NULL));
+	return ("[ERROR check_vertex_data]\tVertex line format is incorrect!\n" \
+	"A vertex is created with the following formats:\n" \
+	"v X Y Z W R G B A\nv X Y Z W\nv X Y Z\nv X Y Z R G B A\n" \
+	"v X Y Z R G B\n With R G B A values between 0 and 1n");
 }
 
-static bool		check_vertex_data(t_obj *obj, const int index, const int ret)
+static bool		obj_process_vertex_data(t_obj *obj, char **split, int mod[2])
 {
-	bool		res;
-
-	if (obj && (res = true))
+	if (obj && split)
 	{
-		if (res && ret == 3)
-		{
-			obj->vertex[index + 3] = 1.0f;
-			res = fill_vertex_hue(obj, index);
-		}
-		else if (res && ret == 4)
-			res = fill_vertex_hue(obj, index);
-		else if (res && ret == 7)
-			obj->vertex[index + 7] = 1.0f;
-		else if (!res && ret != 8)
-			return (obj_berror("[ERROR check_vertex_data]\tVertex line forma" \
-			"t is incorrect\n It needs to be X Y Z W R G B A\nXYZ are mandato" \
-			"ry, if you need color specify at least the RGB!\n", NULL));
-		return (res);
+		if (mod[1] - 1 == 3)
+			return (obj_process_vertex_xyz(obj, split, mod[0]));
+		else if (mod[1] - 1 == 4)
+			return (obj_process_vertex_xyzw(obj, split, mod[0]));
+		else if (mod[1] - 1 == 6)
+			return (obj_process_vertex_xyzrgb(obj, split, mod[0]));
+		else if (mod[1] - 1 == 7)
+			return (obj_process_vertex_xyzrgba(obj, split, mod[0]));
+		else if (mod[1] - 1 == 8)
+			return (obj_process_vertex_xyzwrgba(obj, split, mod[0]));
+		else
+			return (obj_berror("Invalid mesh vertex line!\n", NULL));
 	}
-	return (obj_berror("[ERROR check_vertex_data]\t" \
-	"NULL mesh pointer!\n", NULL));
+	return (obj_berror("[ERROR obj_process_vertex_data]\t" \
+	"NULL mesh or split vertex line pointer!\n", NULL));
 }
 
 bool			obj_process_vertex(t_obj *obj, char *str)
 {
 	int			i[2];
+	char		**split;
 
-	if (obj && str)
+	if (obj && str && !(split = NULL))
 	{
 		if (!obj->vertex && obj->n_vertex[0] > 0)
 			if (!create_v_array(obj))
 				return (obj_berror("Failed create mesh vertex array!\n", NULL));
 		i[0] = (++obj->n_vertex[1] - 1) * 8;
-		i[1] = sscanf(str, "v %f %f %f %f %f %f %f %f\n",
-					&obj->vertex[i[0]], &obj->vertex[i[0] + 1], \
-					&obj->vertex[i[0] + 2], &obj->vertex[i[0] + 3], \
-					&obj->vertex[i[0] + 4], &obj->vertex[i[0] + 5], \
-					&obj->vertex[i[0] + 6], &obj->vertex[i[0] + 7]);
-		if (i[1] < 3)
-			return (obj_berror("Invalid mesh vertex line!\n", NULL));
-		if (!(check_vertex_data(obj, i[0], i[1])))
-			return (obj_berror("Missing values in vertex line!\n", NULL));
+		if (!(split = obj_strsplit(str, ' ')))
+			return (obj_berror("Failed to split vertex line!\n", NULL));
+		i[1] = (int)obj_strsplit_len(split);
+		if (i[1] != 3 && i[1] != 4 && i[1] != 6 && i[1] != 7 && i[1] != 8)
+			return (obj_berror(print_vertex_format(), NULL));
+		if (!(obj_process_vertex_data(obj, split, i)))
+			return (obj_berror("Failed processing vertex data!\n", NULL));
 		return (true);
 	}
 	return (obj_berror("[ERROR mesh_process_vertex]\t" \

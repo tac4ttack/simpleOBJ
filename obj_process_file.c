@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:51:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 16:49:24 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/02 17:00:08 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,21 @@ static void		*process_error(t_obj *obj, char **split, char *msg)
 	return (obj_error(msg, NULL));
 }
 
+static void		obj_data_clean(char *str)
+{
+	int		i;
+
+	if (str && !(i = 0))
+	{
+		while (str[i])
+		{
+			if (str[i] == '\t')
+				str[i] = ' ';
+			i++;
+		}
+	}
+}
+
 t_obj			*obj_process_file(char *data)
 {
 	t_obj		*obj;
@@ -58,6 +73,7 @@ t_obj			*obj_process_file(char *data)
 		obj = NULL;
 		if (!(data = obj_strtrim(data)))
 			return (obj_error("Mesh data trimming failed!\n", data));
+		obj_data_clean(data);
 		if (!(split = obj_strsplit(data, '\n')))
 			return (obj_error("Mesh data split failed!\n", data));
 		if (!(obj = create_mesh(obj)))
