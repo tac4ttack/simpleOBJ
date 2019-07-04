@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:29:03 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 15:39:36 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:47:43 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char			*obj_file_dump(const int fd, const size_t target_size)
 	void			*data;
 	ssize_t			read_status;
 
-	if (fd > 0)
+	if (fd > 0 && !(data = NULL))
 	{
 		if (!(data = malloc(target_size + 1)))
 		{
@@ -74,7 +74,7 @@ t_obj				*obj_load_file(char *target)
 	int				fd;
 	char			*data;
 
-	if (target)
+	if (target && !(data = NULL))
 	{
 		if (!(obj_file_open(target, &len, &fd)))
 		{
@@ -86,7 +86,7 @@ t_obj				*obj_load_file(char *target)
 			return (obj_error("[ERROR obj_load_file]\t" \
 			"Failed dumping mesh data!\n", data));
 		}
-		if (!(mesh = obj_process_file(data)))
+		if (!(mesh = obj_process_file(&data)))
 		{
 			return (obj_error("[ERROR obj_load_file]\t" \
 			"Failed processing mesh data!\n", data));

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 13:00:22 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:07:42 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,12 @@ static char			**clean_failed_split(char **ret, int len)
 
 	i = 0;
 	while (i < len)
+	{
 		free(ret[i]);
+		ret[i] = NULL;
+	}
 	free(ret);
+	ret = NULL;
 	return (NULL);
 }
 

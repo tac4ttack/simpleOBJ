@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:58:21 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/02 17:00:40 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:42:13 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ static bool		obj_process_vertex_data(t_obj *obj, char **split, int mod[2])
 		else if (mod[1] - 1 == 8)
 			return (obj_process_vertex_xyzwrgba(obj, split, mod[0]));
 		else
+		{
+			obj_strsplit_destroy(split);
 			return (obj_berror("Invalid mesh vertex line!\n", NULL));
+		}
 	}
 	return (obj_berror("[ERROR obj_process_vertex_data]\t" \
 	"NULL mesh or split vertex line pointer!\n", NULL));

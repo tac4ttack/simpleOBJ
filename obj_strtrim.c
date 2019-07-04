@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 13:09:27 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:22:09 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ char	*obj_strtrim(char *s)
 			dest[i++] = s[j++];
 	}
 	free(s);
+	s = NULL;
 	return (dest);
 }

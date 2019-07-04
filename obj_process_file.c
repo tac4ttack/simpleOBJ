@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:51:28 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/02 17:00:08 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:22:26 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,26 @@ static void		obj_data_clean(char *str)
 	}
 }
 
-t_obj			*obj_process_file(char *data)
+t_obj			*obj_process_file(char **data)
 {
 	t_obj		*obj;
 	char		**split;
 
-	if (data)
+	if (*data)
 	{
 		obj_log("[simpleOBJ] Processing mesh...\n");
 		obj = NULL;
-		if (!(data = obj_strtrim(data)))
-			return (obj_error("Mesh data trimming failed!\n", data));
-		obj_data_clean(data);
-		if (!(split = obj_strsplit(data, '\n')))
-			return (obj_error("Mesh data split failed!\n", data));
+		if (!(*data = obj_strtrim(*data)))
+			return (obj_error("Mesh *data trimming failed!\n", *data));
+		obj_data_clean(*data);
+		if (!(split = obj_strsplit(*data, '\n')))
+			return (obj_error("Mesh *data split failed!\n", *data));
 		if (!(obj = create_mesh(obj)))
-			return (process_error(obj, split, "Mesh data creation failed!\n"));
+			return (process_error(obj, split, "Mesh *data creation failed!\n"));
 		if (!(obj_line_process(obj, split)))
 			return (process_error(obj, split, "Mesh line process failed!\n"));
 		obj_strsplit_destroy(split);
-		obj_memdel((void**)(&data));
+		obj_memdel((void**)(data));
 		if (DEBUG_OBJ)
 			obj_print_data(obj);
 		obj_log("[simpleOBJ] Finished processing mesh...\n");
