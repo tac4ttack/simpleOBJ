@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 12:49:50 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/02 13:05:26 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/05 11:00:29 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ static bool		obj_checksum_validate_face(t_obj *obj, char *str)
 		len = obj_strsplit_len(face_split);
 		obj_strsplit_destroy(face_split);
 		if (len < 4 || len > 5)
-			return (!(obj_log_error("[ERROR obj_checksum_validate_face]"
-			"\tFace element is not a triangle or a quad! ->\t %s\n", str)));
+			obj_face_checksum_error(str);
 		else if (len == 5)
 			obj->n_face[0] += 2;
 		else

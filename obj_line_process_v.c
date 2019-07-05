@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 11:38:27 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 15:36:15 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/05 10:04:25 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ bool	obj_line_process_v(t_obj *obj, char *str)
 	{
 		if (!(obj_line_process_check(str, CHARSET_V)))
 		{
-			return (!obj_log_error("[ERROR obj_line_process_v]\t" \
-			"Wrong character found in V line ->\t\"%s\"\n", str));
+			obj_log("Wrong character found in V line:\t\"%s\"\n", str);
+			return (obj_berror("[ERROR obj_line_process_v]\t" \
+			"Invalid Vertex element line\n", NULL));
 		}
 		if (!(obj_process_vertex(obj, str)))
 		{
-			return (!obj_log_error("[ERROR obj_line_process_v]\t" \
-			"Vertex line processing failed ->\t%s\n", str));
+			obj_log("Failed processing vertex element line:\t\"%s\"\n", str);
+			return (obj_berror("[ERROR obj_line_process_v]\t" \
+			"Invalid Vertex element line, could not process it\n", NULL));
 		}
 		return (true);
 	}

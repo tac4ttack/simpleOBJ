@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 12:17:24 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/04 16:21:53 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/05 11:00:47 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,13 +182,13 @@ bool							obj_hue_process(t_obj *obj, \
 */
 void							*obj_error(const char *message, void *trash);
 bool							obj_berror(const char *message, void *trash);
+bool							obj_face_checksum_error(const char* message);
 
 /*
 **	Logging functions
 */
 bool							obj_log_init(const char *message, ...);
 bool							obj_log(const char *message, ...);
-bool							obj_log_error(const char *message, ...);
 
 /*
 **	Data printing functions

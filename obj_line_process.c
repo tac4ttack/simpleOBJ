@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 11:37:40 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/02 16:28:58 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/05 10:10:28 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ bool		obj_line_process(t_obj *obj, char **split)
 		{
 			if ((failure = !obj_line_process_dispatch(obj, *split)))
 			{
-				return (!(obj_log_error("[ERROR obj_line_process]\t"
-				"Following line is invalid! -> %s\n", *split)));
+				obj_log("Following line is invalid: %s\n", *split);
+				return (obj_berror("[ERROR obj_line_process]\t" \
+				"Line parsing dispatch failed", NULL));
 			}
 			split++;
 		}

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 18:27:59 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 15:34:27 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/05 10:11:14 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,6 @@ bool		obj_log_init(const char *message, ...)
 	return (true);
 }
 
-bool		obj_log_error(const char *message, ...)
-{
-	FILE	*file;
-	va_list	argptr;
-
-	file = fopen(SIMPLE_OBJ_LOG_FILE, "a");
-	if (!file)
-	{
-		fprintf(stderr,
-				"ERROR: could not open error log file %s for appending\n",
-				SIMPLE_OBJ_LOG_FILE);
-		return (false);
-	}
-	va_start(argptr, message);
-	vfprintf(file, message, argptr);
-	va_end(argptr);
-	if (DEBUG_OBJ)
-	{
-		va_start(argptr, message);
-		vfprintf(stderr, message, argptr);
-		va_end(argptr);
-	}
-	fclose(file);
-	return (true);
-}
-
 bool		obj_log(const char *message, ...)
 {
 	FILE	*file;
@@ -74,9 +48,7 @@ bool		obj_log(const char *message, ...)
 	file = fopen(SIMPLE_OBJ_LOG_FILE, "a");
 	if (!file)
 	{
-		fprintf(
-			stderr,
-			"ERROR: could not open log file %s for appending\n",
+		fprintf(stderr, "ERROR: could not open log file %s for appending\n", \
 			SIMPLE_OBJ_LOG_FILE);
 		return (false);
 	}
