@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 15:58:21 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/04 16:42:13 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/05 11:19:34 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char		*print_vertex_format(void)
 	return ("[ERROR check_vertex_data]\tVertex line format is incorrect!\n" \
 	"A vertex is created with the following formats:\n" \
 	"v X Y Z W R G B A\nv X Y Z W\nv X Y Z\nv X Y Z R G B A\n" \
-	"v X Y Z R G B\n With R G B A values between 0 and 1n");
+	"v X Y Z R G B\n With R G B A values between 0 and 1\n");
 }
 
 static bool		obj_process_vertex_data(t_obj *obj, char **split, int mod[2])

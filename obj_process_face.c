@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 12:59:37 by fmessina          #+#    #+#             */
-/*   Updated: 2019/07/01 16:37:26 by fmessina         ###   ########.fr       */
+/*   Updated: 2019/07/05 12:17:40 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool			obj_process_face(t_obj *obj, char *str)
 	{
 		if (!obj->face && obj->n_face[0] > 0)
 			if (!create_face_array(obj))
-				return (obj_berror("Failed create mesh face array!", NULL));
+				return (obj_berror("Failed create mesh face array!\n", NULL));
 		i[0] = (++obj->n_face[1] - 1) * 9;
 		if (!(split = obj_strsplit(str, ' ')))
 			return (obj_berror("Invalid mesh face line format!\n", NULL));
